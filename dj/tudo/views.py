@@ -43,7 +43,6 @@ class signin(APIView):
                     secure=False,
                     samesite='Lax'
                 )
-                print(refresh_token)
                 return response
             else:
                 return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
