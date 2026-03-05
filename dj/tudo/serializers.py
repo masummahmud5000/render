@@ -34,17 +34,19 @@ class SignInSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
 
     def validate(self, attrs):
+
         username = attrs['username']
         password = attrs['password']
 
         user = authenticate(username=username, password=password)
-
+        
         if not user:
             raise serializers.ValidationError('userNotFound')
         else:
             refresh = RefreshToken.for_user(user)
             attrs['refresh'] = str(refresh)
             attrs['access'] = str(refresh.access_token)
+            attrs['user'] = str(user.username)
 
             return attrs
 # /////////////////////////////////////////////////////////////////////

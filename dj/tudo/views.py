@@ -26,26 +26,41 @@ class signin(APIView):
 
                 refresh_token = serial.validated_data['refresh']
                 access_token = serial.validated_data['access']
+                userName = serial.validated_data['user']
 
-                response = Response(status=status.HTTP_200_OK)
+                response = Response(data={'name': userName},status=status.HTTP_200_OK)
 
                 response.set_cookie(
                     key='access_token',
                     value=access_token,
                     httponly=True,
                     secure=False,
-                    samesite='Lax'
+                    samesite='Lax',
                 )
                 response.set_cookie(
                     key='refresh_token',
                     value=refresh_token,
                     httponly=True,
                     secure=False,
-                    samesite='Lax'
+                    samesite='Lax',
                 )
+                
                 return response
             else:
                 return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
             return Response({'Error': str(e)})
+
+# Create your views here.
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated 
+
+class listCreate(APIView):
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        print(request.data)
+        return

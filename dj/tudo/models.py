@@ -47,4 +47,19 @@ class Server(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+# transactionType = (('s', 'Suceessfull'), ('f', 'Faile'))
+from django.conf import settings
+class List(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete= models.CASCADE,
+        related_name= 'list'
+    )
+    subject = models.CharField(max_length=50)
+    textbox = models.CharField(max_length=500)
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user} - {self.subject}'
         
