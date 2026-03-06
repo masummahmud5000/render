@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Server
+from .models import Server, List
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 # ////////////////////////////
@@ -49,4 +49,31 @@ class SignInSerializer(serializers.Serializer):
             attrs['user'] = str(user.username)
 
             return attrs
+# /////////////////////////////////////////////////////////////////////
+class ListCreateSerializer(serializers.Serializer):
+    subject = serializers.CharField()
+    text = serializers.CharField()
+
+    def validate_subject(self, value):
+        if len(value) > 20:
+            raise serializers.ValidationError('subjectTextOnly20Char')
+        else:
+            return value
+    
+    def validate_text(self, value):
+        if len(value) > 500:
+            raise serializers.ValidationError('textOnly500Char')
+        else:
+            return value
+        
+    def create(self, validated_data):
+        user = self.context['request'].user
+
+        tudo = List.objects.create(
+            user=user,
+            subject=validated_data['subject'],
+            textbox=validated_data['text']
+        )
+
+        return tudo
 # /////////////////////////////////////////////////////////////////////

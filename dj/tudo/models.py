@@ -56,8 +56,8 @@ class List(models.Model):
         on_delete= models.CASCADE,
         related_name= 'list'
     )
-    subject = models.CharField(max_length=50)
-    textbox = models.CharField(max_length=500)
+    subject = models.CharField(max_length=25)
+    textbox = models.CharField(max_length=510)
     time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
