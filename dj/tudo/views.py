@@ -4,7 +4,8 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated 
 
-from .serializers import SingupSerializer, SignInSerializer, ListCreateSerializer
+from .serializers import SingupSerializer, SignInSerializer, ListCreateSerializer, ListSerializer
+from .models import Server, List
 
 # Create your views here.
 # Create your views here.
@@ -70,5 +71,35 @@ class listCreate(APIView):
                 return Response(status=status.HTTP_201_CREATED)
             else:
                 return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(str(e))
+        
+class ListSend(APIView):
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            # user = Server.objects.filter(id=request.user.id).first()
+            user = request.user
+            list = user.list.all().order_by('-id')
+            serial = ListSerializer(list, many=True)
+            # print(list)
+            return Response(serial.data,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(str(e))
+# //////////////////////////////////////////////////////////
+class delete(APIView):
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, id):
+        try:
+            user = Server.objects.filter(id=request.user.id).first()
+            item = List.objects.get(pk=id, user=user)
+            item.delete()
+            return Response(status=status.HTTP_200_OK)
         except Exception as e:
             return Response(str(e))

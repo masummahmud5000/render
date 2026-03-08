@@ -77,3 +77,7 @@ class ListCreateSerializer(serializers.Serializer):
 
         return tudo
 # /////////////////////////////////////////////////////////////////////
+class ListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = List
+        fields = ['id','subject','textbox','time']
