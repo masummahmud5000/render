@@ -82,8 +82,8 @@ import dj_database_url
 
 # database_url = os.environ.get('DATABASE_URL')
 DATABASES = {
-    'default': dj_database_url.config(
-        default = 'postgresql://database_1qzz_user:IgBIXumfwnAC3sbRdKxJd4hZ4FADULBM@dpg-d6i81ihr0fns73b5f6bg-a.oregon-postgres.render.com/database_1qzz'
+    'default': dj_database_url.parse(
+        'postgresql://database_1qzz_user:IgBIXumfwnAC3sbRdKxJd4hZ4FADULBM@dpg-d6i81ihr0fns73b5f6bg-a.oregon-postgres.render.com/database_1qzz'
         # default = database_url
     )
 }
@@ -128,7 +128,7 @@ STATIC_URL = 'static/'
 
 TIME_ZONE = 'Asia/Dhaka'
 
-CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app']
+CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app', 'http://localhost:3000']
 
 AUTH_USER_MODEL = 'tudo.Server'
 
