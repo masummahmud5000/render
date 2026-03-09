@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY','').split(',')
+SECRET_KEY = 'django-insecure-masum-software-lab-7pa&&h8)unxpf-+o4=**nvu5_32x=zrs141lvo_1flo_coqxve'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = ['https://render-6-pg2u.onrender.com']
 
 
 # Application definition
@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'dj.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 import dj_database_url
 
-database_url = os.environ.get('DATABASE_URL')
+# database_url = os.environ.get('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(
-        # default = 'postgres://postgres:Mm885000@localhost:5432/server'
-        default = database_url
+        default = 'postgres://postgres:Mm885000@localhost:5432/server'
+        # default = database_url
     )
 }
 
