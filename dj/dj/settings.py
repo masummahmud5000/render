@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-masum-software-lab-7pa&&h8)unxpf-+o4=**nvu5_32x=zr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://render-6-pg2u.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
