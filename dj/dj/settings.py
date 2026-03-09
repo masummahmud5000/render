@@ -83,7 +83,7 @@ import dj_database_url
 # database_url = os.environ.get('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.config(
-        default = 'postgres://postgres:Mm885000@localhost:5432/server'
+        default = 'postgresql://database_1qzz_user:IgBIXumfwnAC3sbRdKxJd4hZ4FADULBM@dpg-d6i81ihr0fns73b5f6bg-a.oregon-postgres.render.com/database_1qzz'
         # default = database_url
     )
 }
