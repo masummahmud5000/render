@@ -128,7 +128,7 @@ STATIC_URL = 'static/'
 
 TIME_ZONE = 'Asia/Dhaka'
 
-CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app']
+CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app', 'http://localhost:3000']
 
 AUTH_USER_MODEL = 'tudo.Server'
 
