@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated 
 
-from .serializers import SingupSerializer, SignInSerializer, ListCreateSerializer, ListSerializer
+from .serializers import SingupSerializer, SignInSerializer, ListCreateSerializer, ListSerializer, Patch
 from .models import Server, List
 
 # Create your views here.
@@ -103,3 +103,20 @@ class delete(APIView):
             return Response(status=status.HTTP_200_OK)
         except Exception as e:
             return Response(str(e))
+
+    def patch(self, request, id):
+        try:
+            print(request.data)
+            user = Server.objects.filter(id=request.user.id).first()
+            item = List.objects.get(pk=id, user=user)
+
+            serial = Patch(item,data=request.data, partial=True)
+            if serial.is_valid():
+                # print(serial.validated_data)
+                serial.save()
+                # print('203')
+                return Response(status=status.HTTP_200_OK)
+            else:
+                return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"error":str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

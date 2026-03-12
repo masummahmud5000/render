@@ -81,3 +81,8 @@ class ListSerializer(serializers.ModelSerializer):
     class Meta:
         model = List
         fields = ['id','subject','textbox','time']
+
+class Patch(serializers.ModelSerializer):
+    class Meta:
+        model = List
+        fields = ['subject','textbox']

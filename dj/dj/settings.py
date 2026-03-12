@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths ins4ide the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,7 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = 'foisdfhsdfnsdhfsdye374983279482dhfsdf-sdjhwjk$huids1!gg-=kjh+jh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -128,6 +130,7 @@ STATIC_URL = 'static/'
 
 TIME_ZONE = 'Asia/Dhaka'
 
+# CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app']
 CORS_ALLOWED_ORIGINS = ['https://tudo-apps.vercel.app']
 
 AUTH_USER_MODEL = 'tudo.Server'
